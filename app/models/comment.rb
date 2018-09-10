@@ -7,4 +7,5 @@ class Comment < ApplicationRecord
     class_name: 'User'
 
   belongs_to :artwork
+  has_many :likes, as: :likeable, dependent: :destroy
 end

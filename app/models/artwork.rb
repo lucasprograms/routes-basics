@@ -16,4 +16,6 @@ class Artwork < ApplicationRecord
     -> { distinct },
     through: :comments,
     source: :commenter
+
+  has_many :likes, as: :likeable, dependent: :destroy
 end

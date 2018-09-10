@@ -1,10 +1,14 @@
 class CommentsController < ApplicationController
   def index
-    if params[:commenter_id]
-      render json: Comment.where(commenter_id: params[:commenter_id])
-    elsif params[:artwork_id]
-      render json: Comment.where(artwork_id: params[:artwork_id])
+    case
+    when params[:commenter_id]
+      @comments = Comment.where(commenter_id: params[:commenter_id])
+    when params[:artwork_id]
+      @comments = Comment.where(artwork_id: params[:artwork_id])
+    else 
+      @comments = Comment.all
     end
+    render json: @comments
   end
 
   def create
