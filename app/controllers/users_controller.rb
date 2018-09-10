@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def index
-    render json: User.all
+    if params[:search]
+      search_params = "%#{params[:search].upcase}%"
+      render json: User.where('UPPER(users.username) LIKE ?', search_params)
+    else
+      render json: User.all
+    end
   end
 
   def create
@@ -27,8 +32,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.destroy(params[:id])
-    render json: User.all
+    user = User.destroy(params[:id])
+    render json: user
   end
 
   private
