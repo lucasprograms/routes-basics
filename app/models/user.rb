@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
-  has_many :artwork,
+  has_many :artworks,
     foreign_key: :artist_id,
     class_name: 'Artwork',
     dependent: :destroy
@@ -20,5 +20,9 @@ class User < ApplicationRecord
   has_many :commented_artworks,
     -> { distinct },
     through: :comments,
-    source: :artwork
+    source: :artworks
+
+  has_many :likes
+  has_many :liked_comments, through: :likes, source: :likeable, source_type: 'Comment'
+  has_many :liked_artworks, through: :likes, source: :likeable, source_type: 'Artwork'
 end

@@ -17,5 +17,5 @@ class Artwork < ApplicationRecord
     through: :comments,
     source: :commenter
 
-  has_many :likes, as: :likeable, dependent: :destroy
+  include Likeable
 end
