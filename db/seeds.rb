@@ -18,3 +18,7 @@ end
 [[1, 2], [1, 3], [1, 4], [2, 3], [3, 7], [4, 6], [1, 8], [3, 3], [4, 5]].each do |arr|
   ArtworkShare.create!(viewer_id: arr[0], artwork_id: arr[1])
 end
+
+[["blah", 1, 2], ['blah blah blah', 3, 5], ['blah blah mrrgggle', 1, 4], ['hahahah wut', 2, 7], ['cats!!!', 2, 2], ['u wot mate', 1, 2]].each do |arr|
+  Comment.create!(body: arr[0], commenter_id: arr[1], artwork_id: arr[2])
+end
